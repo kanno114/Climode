@@ -108,3 +108,16 @@
 - **フロント UI**  
   - Next.js + shadcn/ui + fullcalendar  
   - インフォグラフィックは Recharts を利用予定  
+
+## ■ 技術スタック
+
+### バックエンド
+- Ruby 3.3.6 / Rails 7.2.0（APIモード）  
+- PostgreSQL  
+- Gem: bcrypt, rack-cors, dentaku  
+- デプロイ: Render  
+
+### フロントエンド
+- Node.js 23 / React 19 / Next.js 15.3.3（App Router）  
+- ライブラリ: next-auth, shadcn/ui, conform, zod, fullcalendar  
+- デプロイ: Vercel  
