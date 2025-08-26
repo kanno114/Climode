@@ -148,3 +148,70 @@
 
 ## 画面遷移図
 Figma：https://www.figma.com/design/m5hewFPoHuV17jHZyEieNu/Climode?node-id=0-1&t=sZxqX7T29XB3hBUD-1
+
+## ER図
+``` Mermaid
+erDiagram
+  USERS ||--o{ DAILY_LOGS : has
+  USERS ||--o| USER_IDENTITIES : has
+  USERS ||--o| LOCATIONS : has
+  DAILY_LOGS ||--o| WEATHER_OBSERVATIONS : has
+
+  USERS {
+    bigint   id PK
+    string   email "必須・ユニーク"
+    string   password_digest "任意（通常ログイン時のみ。OAuthの場合は空）"
+    string   name
+    string   image
+    datetime created_at
+    datetime updated_at
+  }
+
+  USER_IDENTITIES {
+    bigint   id PK
+    bigint   user_id FK "必須・ユニーク"
+    string   provider "uidと組合せユニーク"
+    string   uid      "プロバイダー側のユーザーID（providerと組み合わせてユニーク）"
+    string   email    "プロバイダーから取得したメールアドレス"
+    string   display_name  "プロバイダーから取得した表示名"
+    datetime created_at
+    datetime updated_at
+  }
+
+  LOCATIONS {
+    bigint   id PK
+    bigint   user_id FK "ユニーク"
+    decimal  latitude "範囲 -90〜90"
+    decimal  longitude "範囲 -180〜180"
+    datetime created_at
+    datetime updated_at
+  }
+
+  DAILY_LOGS {
+    bigint   id PK
+    bigint   user_id FK "必須"
+    date     date "ユーザー内ユニーク"
+    decimal  sleep_hours "範囲 0〜24"
+    integer  mood "範囲 -5〜+5"
+    integer  score "範囲 0〜100"
+    integer  fatigue "任意 / 範囲 -5〜+5"
+    json     symptoms "jsonb配列 / デフォルト []"
+    integer  self_score "自己評価スコア（任意 / 範囲 0〜100）"
+    text     memo
+    datetime created_at
+    datetime updated_at
+  }
+
+  WEATHER_OBSERVATIONS {
+    bigint   id PK
+    bigint   daily_log_id FK "ユニーク"
+    decimal  temperature_c "範囲 -90〜60"
+    decimal  humidity_pct "範囲 0〜100"
+    decimal  pressure_hpa "範囲 800〜1100"
+    datetime observed_at
+    json     snapshot    "jsonb"
+    datetime created_at
+    datetime updated_at
+  }
+
+```
