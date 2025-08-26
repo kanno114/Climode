@@ -152,10 +152,12 @@ Figma：https://www.figma.com/design/m5hewFPoHuV17jHZyEieNu/Climode?node-id=0-1&
 ## ER図
 ``` Mermaid
 erDiagram
-  USERS ||--o{ DAILY_LOGS : has
-  USERS ||--o| USER_IDENTITIES : has
+  USERS ||--o{ USER_IDENTITIES : has
   USERS ||--o| LOCATIONS : has
+  USERS ||--o{ DAILY_LOGS : has
   DAILY_LOGS ||--o| WEATHER_OBSERVATIONS : has
+  DAILY_LOGS ||--o{ DAILY_LOG_SYMPTOMS : has
+  SYMPTOMS ||--o{ DAILY_LOG_SYMPTOMS : has
 
   USERS {
     bigint   id PK
@@ -169,9 +171,9 @@ erDiagram
 
   USER_IDENTITIES {
     bigint   id PK
-    bigint   user_id FK "必須・ユニーク"
-    string   provider "uidと組合せユニーク"
-    string   uid      "プロバイダー側のユーザーID（providerと組み合わせてユニーク）"
+    bigint   user_id FK "必須"
+    string   provider "必須・(provider, uid)でユニーク"
+    string   uid      "必須・(provider, uid)でユニーク"
     string   email    "プロバイダーから取得したメールアドレス"
     string   display_name  "プロバイダーから取得した表示名"
     datetime created_at
@@ -180,9 +182,9 @@ erDiagram
 
   LOCATIONS {
     bigint   id PK
-    bigint   user_id FK "ユニーク"
-    decimal  latitude "範囲 -90〜90"
-    decimal  longitude "範囲 -180〜180"
+    bigint   user_id FK "ユニーク（ユーザーごとに1拠点）"
+    decimal  latitude  "範囲 -90〜90（例：decimal(10,6)）"
+    decimal  longitude "範囲 -180〜180（例：decimal(10,6)）"
     datetime created_at
     datetime updated_at
   }
@@ -190,13 +192,12 @@ erDiagram
   DAILY_LOGS {
     bigint   id PK
     bigint   user_id FK "必須"
-    date     date "ユーザー内ユニーク"
+    date     date "(user_id, date) でユニーク"
     decimal  sleep_hours "範囲 0〜24"
     integer  mood "範囲 -5〜+5"
-    integer  score "範囲 0〜100"
-    integer  fatigue "任意 / 範囲 -5〜+5"
-    json     symptoms "jsonb配列 / デフォルト []"
-    integer  self_score "自己評価スコア（任意 / 範囲 0〜100）"
+    integer  fatigue "範囲 -5〜+5"
+    integer  score "0〜100（算出結果）"
+    integer  self_score "0〜100（自己評価・任意）"
     text     memo
     datetime created_at
     datetime updated_at
@@ -206,10 +207,26 @@ erDiagram
     bigint   id PK
     bigint   daily_log_id FK "ユニーク"
     decimal  temperature_c "範囲 -90〜60"
-    decimal  humidity_pct "範囲 0〜100"
-    decimal  pressure_hpa "範囲 800〜1100"
-    datetime observed_at
-    json     snapshot    "jsonb"
+    decimal  humidity_pct  "範囲 0〜100"
+    decimal  pressure_hpa  "範囲 800〜1100"
+    datetime observed_at "観測時刻"
+    jsonb    snapshot "取得元の生データ"
+    datetime created_at
+    datetime updated_at
+  }
+
+  DAILY_LOG_SYMPTOMS {
+    bigint   id PK
+    bigint   daily_log_id FK
+    bigint   symptom_id   FK
+    datetime created_at
+    datetime updated_at
+  }
+
+  SYMPTOMS {
+    bigint   id PK
+    string   code "必須・ユニーク（内部コード）"
+    string   name "必須・ユニーク（表示名）"
     datetime created_at
     datetime updated_at
   }
