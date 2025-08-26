@@ -91,6 +91,7 @@
   - 固定重みスコア算出  
   - 固定ロジックによる行動提案  
   - カレンダー表示  
+  - 振り返り機能
 
 - **本リリース（将来的に追加）**  
   - 気温・湿度・気圧の変化量を自動取得してロジックに組み込み  
@@ -102,6 +103,7 @@
   - 週次レポート（グラフ・インフォグラフィック）  
   - 相関分析による個別提案  
   - SNS共有機能  
+  - パスワードリセット
 
 ---
 
@@ -143,3 +145,6 @@
 - Node.js 23 / React 19 / Next.js 15.3.3（App Router）  
 - ライブラリ: next-auth, shadcn/ui, conform, zod, fullcalendar  
 - デプロイ: Vercel  
+
+## 画面遷移図
+Figma：https://www.figma.com/design/m5hewFPoHuV17jHZyEieNu/Climode?node-id=0-1&t=sZxqX7T29XB3hBUD-1
