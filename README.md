@@ -145,3 +145,6 @@
 - Node.js 23 / React 19 / Next.js 15.3.3（App Router）  
 - ライブラリ: next-auth, shadcn/ui, conform, zod, fullcalendar  
 - デプロイ: Vercel  
+
+## 画面遷移図
+Figma：https://www.figma.com/design/m5hewFPoHuV17jHZyEieNu/Climode?node-id=0-1&t=sZxqX7T29XB3hBUD-1
