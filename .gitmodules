@@ -1,0 +1,6 @@
+[submodule "back"]
+	path = back
+	url = git@github.com:kanno114/Climode_back.git
+[submodule "front"]
+	path = front
+	url = git@github.com:kanno114/Climode_front.git
