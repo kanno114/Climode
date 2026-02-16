@@ -126,10 +126,17 @@ Climode では、「自分が気にしている要素」を中心に記録・通
 - カレンダー表示（FullCalendar）
 - 日次ログ詳細表示
 - オンボーディングフロー
+- 設定ページ（プロフィール編集）
+- Google Analytics 4 によるアクセス解析
+- 利用規約ページ
+- プライバシーポリシーページ
+- サービス紹介ページ
 
 ## ■ 実装予定の機能
 
-- 体調予測機能（1 日のリズムから先読み）
+- AI によるサジェスト（蓄積データをもとに AI が体調に合わせた提案を自動生成）
+- 体調予測機能（過去の同条件データから翌日の体調を予測）
+- 分析機能の強化（身体データと環境データの相関をより深く可視化）
 - SNS 共有機能（気づきを家族とシェア）
 - カスタムトリガー設定（自分に合った体調のトリガーを登録）
 
@@ -149,19 +156,19 @@ Climode では、「自分が気にしている要素」を中心に記録・通
 
 - Ruby 3.3.6 / Rails 7.2.0（API モード）
 - PostgreSQL
-- Gem: bcrypt, rack-cors, dentaku, jwt, httparty, kaminari, web-push, whenever
+- Gem: bcrypt, rack-cors, rack-attack, dentaku, jwt, httparty, kaminari, web-push, whenever
 - テスト: rspec-rails, factory_bot_rails, faker, shoulda-matchers, database_cleaner, json_spec
 - デプロイ: Render
 
 ### フロントエンド
 
-- Node.js 23 / React 19.1.2 / Next.js 15.5.7（App Router + Turbopack）
+- Node.js 23 / React 19.1.2 / Next.js 15.5.12（App Router + Turbopack）
 - 認証: next-auth 5.0.0-beta.29
 - UI: shadcn/ui（Radix UI + Tailwind CSS 4）
-- フォーム: @conform-to/react, @conform-to/zod, @hookform/resolvers
+- フォーム: @conform-to/react, @conform-to/zod
 - カレンダー: @fullcalendar/react 6.1.19
 - グラフ: chart.js 4.5.0 + react-chartjs-2 5.3.0
-- 日付ピッカー: react-day-picker 9.9.0
+- アナリティクス: @next/third-parties（Google Analytics 4）
 - OGP: @vercel/og
 - その他: zod, date-fns, lucide-react, sonner
 - テスト: jest, @testing-library/react, @testing-library/jest-dom
