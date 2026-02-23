@@ -163,7 +163,6 @@ Climode では、「自分が気にしている要素」を中心に記録・通
 - Ruby 3.3.6 / Rails 7.2.2.2（API モード）
 - PostgreSQL
 - Gem: bcrypt, rack-cors, rack-attack, dentaku, jwt, httparty, kaminari, web-push, whenever, sentry-ruby, sentry-rails, resend
-- セキュリティ: brakeman（静的解析）
 - テスト: rspec-rails, factory_bot_rails, faker, shoulda-matchers, database_cleaner, json_spec
 - デプロイ: Render
 
