@@ -130,6 +130,10 @@ Climode では、「自分が気にしている要素」を中心に記録・通
 - Google Analytics 4 によるアクセス解析
 - 利用規約ページ
 - プライバシーポリシーページ
+- パスワードリセット機能（メール送信によるリセットフロー）
+- メールアドレス確認機能（メール認証フロー）
+- ダークモード対応（テーマ切り替え）
+- Cookie 同意バナー
 - サービス紹介ページ
 
 ## ■ 実装予定の機能
@@ -154,9 +158,10 @@ Climode では、「自分が気にしている要素」を中心に記録・通
 
 ### バックエンド
 
-- Ruby 3.3.6 / Rails 7.2.0（API モード）
+- Ruby 3.3.6 / Rails 7.2.2.2（API モード）
 - PostgreSQL
-- Gem: bcrypt, rack-cors, rack-attack, dentaku, jwt, httparty, kaminari, web-push, whenever
+- Gem: bcrypt, rack-cors, rack-attack, dentaku, jwt, httparty, kaminari, web-push, whenever, sentry-ruby, sentry-rails, resend
+- セキュリティ: brakeman（静的解析）
 - テスト: rspec-rails, factory_bot_rails, faker, shoulda-matchers, database_cleaner, json_spec
 - デプロイ: Render
 
@@ -170,6 +175,8 @@ Climode では、「自分が気にしている要素」を中心に記録・通
 - グラフ: chart.js 4.5.0 + react-chartjs-2 5.3.0
 - アナリティクス: @next/third-parties（Google Analytics 4）
 - OGP: @vercel/og
+- エラーモニタリング: @sentry/nextjs
+- テーマ: next-themes（ダークモード対応）
 - その他: zod, date-fns, lucide-react, sonner
 - テスト: jest, @testing-library/react, @testing-library/jest-dom
 - デプロイ: Vercel
